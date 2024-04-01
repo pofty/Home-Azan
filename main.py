@@ -25,6 +25,8 @@ def AzanHandler(name_of_azan: str):
 
     # triggered
     print("Azan {} triggered".format(name_of_azan))
+    if name_of_azan == "Fajar":
+        play.play_azan_fajar()
     play.play_azan()
     run_commands.disconnect_from_google_mini()
 

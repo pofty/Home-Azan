@@ -13,6 +13,12 @@ def play_azan():
     play_sound(azan_path)
     print("Azan finished playing")
 
+def play_azan_fajar():
+    print("Playing azan fajar")
+    azan_path = os.path.normpath(os.path.join(os.path.dirname(__file__), "AZAN2.wav"))
+    sa.stop_all()
+    play_sound(azan_path)
+    print("Azan fajar finished playing")
 
 def play_sound(path: str):
     Time.sleep(2)
