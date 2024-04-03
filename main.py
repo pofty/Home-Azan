@@ -14,12 +14,13 @@ def stop_standby_thread():
 def get_desired_times() -> list:
     return get_prayer_times.get_prayer_times()
 
+
 def AzanHandler(name_of_azan: str):
     run_commands.connect_to_google_mini()
 
-    if (name_of_azan == "Fajar" or name_of_azan == "Sunrise"):
-        run_commands.set_volume(30)
-        print("Volume set to 23%")
+    if name_of_azan == "Fajar" or name_of_azan == "Sunrise":
+        run_commands.set_volume(38)
+        print("Volume set to 38%")
     else:
         run_commands.set_volume(55)
 
@@ -27,9 +28,9 @@ def AzanHandler(name_of_azan: str):
     print("Azan {} triggered".format(name_of_azan))
     if name_of_azan == "Fajar":
         play.play_azan_fajar()
-    play.play_azan()
+    else:
+        play.play_azan()
     run_commands.disconnect_from_google_mini()
-
 
 
 # Schedule the function to run at the desired time every day
@@ -42,7 +43,7 @@ def schedule_function():
     Maghrib = prayer_times[4]
     Isha = prayer_times[5]
     schedule.every().day.at(Fajar).do(AzanHandler, "Fajar")
-    #schedule.every().day.at(Sunrise).do(AzanHandler, "Sunrise")
+    # schedule.every().day.at(Sunrise).do(AzanHandler, "Sunrise")
     schedule.every().day.at(Dhuhr).do(AzanHandler, "Dhuhr")
     schedule.every().day.at(Asr).do(AzanHandler, "Asr")
     schedule.every().day.at(Maghrib).do(AzanHandler, "Maghrib")
@@ -58,7 +59,6 @@ print("Welcome message will be played in 3 seconds")
 time.sleep(3)
 play.play_welcome_message()
 
-
 # Keep the script running
 while True:
     schedule.run_pending()
@@ -68,6 +68,3 @@ while True:
         # Refresh the scheduling every 24 hours
         schedule.clear()
         schedule_function()
-
-
-
