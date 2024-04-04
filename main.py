@@ -64,7 +64,7 @@ while True:
     schedule.run_pending()
     time.sleep(1)
     current_time = time.strftime("%H:%M")  # Get current time in "HH:MM" format
-    if current_time == "00:00":
+    if current_time == "00:10":
         # Refresh the scheduling every 24 hours
         schedule.clear()
         schedule_function()
